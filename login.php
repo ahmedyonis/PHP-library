@@ -1,10 +1,18 @@
+<?php
+$error=[];
+if(isset($_GET['error'])){
+    $errorJson = urldecode($_GET['error']);
+    $error=json_decode($errorJson,true);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/login.css">
+    <link rel="stylesheet" href="./styles/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -15,7 +23,7 @@
 
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form id="signupForm" action="/signup" method="POST">
+            <form id="signupForm" action="auth.php" method="POST">
                 <h1>Create Account</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
@@ -23,22 +31,23 @@
                     <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
+                <input type="hidden" name="action" value="signup">
                 <span>or use your email for registration</span>
                 <input id="FnameUP" type="text" placeholder="First Name" name="firstname" required>
-                <span class="wrong"></span>
+                <span class="wrong"><?= $error['firstname'] ?? ''?></span>
                 <input id="LnameUP" type="text" placeholder="Last Name" name="lastname" required>
-                <span class="wrong"></span>
+                <span class="wrong"><?= $error['lastname'] ?? ''?></span>
                 <input id="EmailUP" type="email" placeholder="Email" name="email" required>
-                <span class="wrong"></span>
+                <span class="wrong"><?= $error['email'] ?? ''?></span>
                 <input id="PasswordUP" type="password" placeholder="Password" name="password" required>
-                <span class="wrong"></span>
+                <span class="wrong"><?= $error['password'] ?? ''?></span>
                 <input id="RePasswordUP" type="password" placeholder="Confirm Password" name="repassword" required>
-                <span class="wrong"></span>
+                <span class="wrong"><?= $error['repassword'] ?? ''?></span>
                 <button type="submit">Sign Up</button>
             </form>
         </div>
         <div class="form-container sign-in">
-            <form id="signinForm" action="/signin" method="POST">
+            <form id="signinForm" action="auth.php" method="POST">
                 <h1>Sign In</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
@@ -47,8 +56,11 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email password</span>
+                <input type="hidden" name="action" value="signin">
                 <input id="EmailIN" type="email" placeholder="Email" name="email" required>
+                <span class="wrong"><?= $error['email'] ?? ''?></span>
                 <input id="PasswordIN" type="password" placeholder="Password" name="password" required>
+                <span class="wrong"><?= $error['password'] ?? ''?></span>
                 <a href="#">Forget Your Password?</a>
                 <button type="submit">Sign In</button>
             </form>
@@ -70,7 +82,7 @@
     </div>
 
 
-    <script src="/script/login.js"></script>
+    <script src="./script/login.js"></script>
 </body>
 
 </html>
