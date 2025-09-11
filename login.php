@@ -4,6 +4,11 @@ if(isset($_GET['error'])){
     $errorJson = urldecode($_GET['error']);
     $error=json_decode($errorJson,true);
 }
+session_start();
+if(isset($_SESSION['user'])){
+    header("Location: main.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
