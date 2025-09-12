@@ -11,6 +11,25 @@ if(isset($_SESSION['user'])){
 }
 ?>
 
+<?php
+require "db.php";
+
+if(isset($_POST['login'])){
+    $Email = $_POST['Email'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM admin WHERE Email='$Email' AND password='$password'";
+    $result = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($result) == 1){
+        $_SESSION['admin'] = $username;
+        header("Location: dashboard.php");
+    } else {
+        echo "Invalid login!";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,7 +1,11 @@
-body {
-    background: #e0e0e0;
-    padding: 30px;
-    color: #333;
+body.homepage {
+  padding: 0;
+}
+
+body.AdminBooks {
+  padding: 30px;
+  background: #e0e0e0;
+  color: #333;
 }
 
 h2 {
@@ -9,6 +13,53 @@ h2 {
     margin-bottom: 20px;
     color: #222;
 }
+
+.form-books {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%; 
+    margin: 0 auto;
+}
+
+.form-books .row {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.form-books .row input {
+    flex: 1;
+    width: 100%;
+}
+
+.form-books input {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.form-books button {
+    padding: 12px;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+}
+
+
+.form-books button:hover {
+    background: linear-gradient(135deg, #45a049, #3d8b40);
+    transform: scale(1.03);
+}
+
 
 form {
     display: flex;
@@ -79,3 +130,7 @@ table a {
 table a:hover {
     background: #c0392b;
 }
+.styleEdit {
+    background-color: rgb(255, 184, 53);
+}
+

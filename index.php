@@ -7,7 +7,7 @@ if(isset($_SESSION['admin'])){
 }
 
 else {
-    header("Location: loginrashwan.php");
+    header("Location: loginToCheck.php");
     exit();
 }
 ?>

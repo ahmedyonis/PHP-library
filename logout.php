@@ -1,5 +1,5 @@
 <?php
 session_start();
 session_destroy();
-header("Location: loginrashwan.php");
+header("Location: loginToCheck.php");
 ?>

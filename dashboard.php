@@ -10,30 +10,32 @@
     <?php
         session_start();
         if(!isset($_SESSION['admin'])){
-            header("Location: loginrashwan.php");
+            header("Location: login.php");
             exit();
         }
         require "db.php";
     ?>
 
-    <h2>Admin Dashboard</h2>
-    <div class="container">
-        <div>
-            <a href="Books.php">Manage Books</a>
-        </div>
-        <div>
-            <a href="students.php">Manage Students</a>
-        </div>
-        <div>
-            <a href="borrowed.php">Borrowed Books</a>
-        </div>
-        <div>
-            <a href="UpdateProfileAdmin.php">Update Profile</a>
-        </div>
-        <div>
-            <a href="logout.php">Logout</a>
-        </div>
+<h2>Admin Dashboard</h2>
+<div class="container">
+    <div class="card">
+        <a href="AdminBooks.php">Manage Books</a>
     </div>
+    <div class="card">
+        <a href="students.php">Manage Students</a>
+    </div>
+    <div class="card">
+        <a href="borrowed.php">Borrowed Books</a>
+    </div>
+    <div class="card">
+        <a href="UpdateProfileAdmin.php">Update Profile</a>
+    </div>
+    <div class="card">
+        <a href="logout.php">Logout</a>
+    </div>
+</div>
+
+
 </body>
 </html>
 
