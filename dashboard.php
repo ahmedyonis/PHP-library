@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <?php
+        session_start();
+        if(!isset($_SESSION['admin'])){
+            header("Location: loginrashwan.php");
+            exit();
+        }
+        require "db.php";
+    ?>
+
+    <h2>Admin Dashboard</h2>
+    <div class="container">
+        <div>
+            <a href="Books.php">Manage Books</a>
+        </div>
+        <div>
+            <a href="students.php">Manage Students</a>
+        </div>
+        <div>
+            <a href="borrowed.php">Borrowed Books</a>
+        </div>
+        <div>
+            <a href="UpdateProfileAdmin.php">Update Profile</a>
+        </div>
+        <div>
+            <a href="logout.php">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
+
+
