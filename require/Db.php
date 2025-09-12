@@ -37,6 +37,11 @@ class MyDb{
         return $data->fetch(PDO::FETCH_ASSOC);
     }
 
+    function borrowed_book($table,$user_id){
+        $data = $this->connection->query("select * from $table where user_id = $user_id");
+        return $data->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
     function insert($table,$columns,$values){
         $data = $this->connection->query("insert into $table ($columns) values ($values)");

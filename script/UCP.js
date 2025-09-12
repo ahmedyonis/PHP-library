@@ -11,4 +11,16 @@ toggleBtn.addEventListener('click', () => {
     mainContent.classList.toggle('shifted');
     header.classList.toggle('shifted');
     footer.classList.toggle('shifted');
+
 });
+
+
+
+
+function enableEditing() {
+    document.getElementById('firstname').disabled = false;
+    document.getElementById('lastname').disabled = false;
+    document.getElementById('email').disabled = false;
+    document.getElementById('password').disabled = false;
+    document.getElementById('editBtn').disabled = false;
+}
