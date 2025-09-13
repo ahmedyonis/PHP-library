@@ -1,11 +1,14 @@
 <?php
 session_start();
+
+    require 'require/Db.php';
+    $db = new MyDb();
+
     if(!isset($_SESSION['user'])){
         header("Location: login.php");
         exit();
     }else{
-        require 'require/Db.php';
-        $db = new MyDb();
+
         $data = $db->checkdata($_SESSION['user']);
         if($data['admin'] !== 1){
             header("Location: users.php");
@@ -32,8 +35,6 @@ session_start();
 <body>
     <a href="admin.php">Back</a>
     <?php
-        require "./require/db.php";
-        $db = new MyDb();
 
         
 

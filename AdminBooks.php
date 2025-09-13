@@ -1,11 +1,14 @@
 <?php
+
 session_start();
+require './require/Db.php';
+$db = new MyDb();
     if(!isset($_SESSION['user'])){
         header("Location: login.php");
         exit();
     }else{
-        require 'require/Db.php';
-        $db = new MyDb();
+
+        
         $data = $db->checkdata($_SESSION['user']);
         if($data['admin'] !== 1){
             header("Location: users.php");
@@ -25,13 +28,12 @@ session_start();
 </head>
 <body class="AdminBooks">    
     <?php
-        require "./require/Db.php";
 
         if(isset($_POST['add'])){
             $name = $_POST['name'];
             $author = $_POST['author'];
             $description = $_POST['description'];
-            $db = new MyDb();
+
             $db->insert('books','name, author, description',"'$name', '$author', '$description'");
         }
 
@@ -40,7 +42,7 @@ session_start();
             $id = $_GET['edit'];
             // $edit_result = mysqli_query($conn, "SELECT * FROM books WHERE id=$id");
             // $edit_book = mysqli_fetch_assoc($edit_result);
-            $db = new MyDb();
+
             $edit_book = $db->viewone('books', $id);            
         }
 
@@ -53,7 +55,7 @@ session_start();
             // mysqli_query($conn, "UPDATE books 
             // SET title='$title', author='$author', description='$description' 
             // WHERE id=$id");
-            $db = new MyDb();
+
             $db->update('books', "name='$name', author='$author', description='$description'", $id);
 
             header("Location: AdminBooks.php");
@@ -63,11 +65,10 @@ session_start();
         if(isset($_GET['delete'])){
             $id = $_GET['delete'];
             // mysqli_query($conn, "DELETE FROM books WHERE id=$id");
-            $db = new MyDb();
+
             $db->deleteone('books', $id);
         }
 
-        $db = new MyDb();
 
         $result = $db->viewall('books');
     ?>

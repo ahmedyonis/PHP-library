@@ -2,12 +2,15 @@
 
 
 session_start();
+
+    require 'require/Db.php';
+    $db = new MyDb();
+
     if(!isset($_SESSION['user'])){
         header("Location: login.php");
         exit();
     }else{
-        require 'require/Db.php';
-        $db = new MyDb();
+
         $data = $db->checkdata($_SESSION['user']);
         if($data['admin'] !== 1){
             header("Location: users.php");
@@ -17,8 +20,6 @@ session_start();
 
 $id = $_GET['id'] ?? null;
 
-require 'require/Db.php';
-$db = new MyDb();
 
 if($id){
     $_SESSION['id'] = $id;
