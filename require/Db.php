@@ -42,14 +42,23 @@ class MyDb{
         return $data->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    function available_book($table){
+        $data = $this->connection->query("select * from $table where user_id IS NULL");
+        return $data->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     function insert($table,$columns,$values){
         $data = $this->connection->query("insert into $table ($columns) values ($values)");
     }
 
-    function update($table,$id,$data){
+    function update($table,$data,$id){
         $data = $this->connection->query("update $table set $data where id = $id");
         
+    }
+
+    function books($id){
+        $data = $this->connection->query("select name from books where user_id = $id");
+        return $data->fetchAll(PDO::FETCH_ASSOC);
     }
 
 

@@ -22,7 +22,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if(isset($_POST['action']) && $_POST['action'] === 'logout'){
         session_unset();
         session_destroy();
-        header("Location: login.php");
+        header("Location: index.php");
         exit();
     }
 }
@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if(isset($_POST['return'])){
         $book_id = $_POST['return'];
-        $db->update('books',$book_id,"user_id = NULL");
+        $db->update('books',"user_id = NULL" ,$book_id);
         header("Location: users.php");
         exit();
     }
@@ -53,7 +53,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	<header id="header">
         <h1>User Control Panel</h1>
         <div class="header-content">
-            <a href="main.php"><button class="btn btn-primary">Back to Main</button></a>
+            <a href="index.php"><button class="btn btn-primary">Back to Main</button></a>
             <form method="post">
                 <input type="hidden" name="action" value="logout">
                 <button type="submit" class="btn btn-primary">log out</button>
