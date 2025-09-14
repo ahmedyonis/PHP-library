@@ -40,7 +40,7 @@ $db = new MyDb();
         $edit_book = null;
         if(isset($_GET['edit'])){
             $id = $_GET['edit'];
-            $edit_result = mysqli_query($conn, "SELECT * FROM books WHERE id=$id");
+            // $edit_result = mysqli_query($conn, "SELECT * FROM books WHERE id=$id");
             // $edit_book = mysqli_fetch_assoc($edit_result);
 
             $edit_book = $db->viewone('books', $id);            
