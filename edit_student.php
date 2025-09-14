@@ -55,68 +55,74 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <title>Edit Student</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/edit_student.css">
 </head>
 <body>
-    <h2>student data</h2>
+
+<div class="form-container">
+    <h2>Student Data</h2>
     <form action="auth.php" method="POST" class="form-group">
         <input type="hidden" name="action" value="updateAdmin">
-        <input type="hidden" name="id" value = "<?= $data['id'] ?>">
-        <label for="firstname">Firstname:</label><br>
-        <input type="text" id="firstname" name="firstname" value="<?= $data['firstname'] ?>" ><br>
-        <span style="color:red;"><?= $error['firstname'] ?? ''?></span>
-        <br>
-        <label for="lastname">Lastname:</label><br>
-        <input type="text" id="lastname" name="lastname" value="<?= $data['lastname'] ?>" ><br>
-        <span style="color:red;"><?= $error['lastname'] ?? ''?></span>
-        <br>
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" value="<?= $data['email'] ?>" ><br>
-        <span style="color:red;"><?= $error['email'] ?? ''?></span>
-        <br>
-        <label for="password">Password:</label><br>
-        <input type="text" id="password" name="password" value="<?= $data['password'] ?>" ><br>
-        <span style="color:red;"><?= $error['password'] ?? ''?></span>
-        <br>
-        <label for="admin">Is admin</label>
-        <select name="admin" id="admin">
-            <option <?php if ($data['admin'] == 0) echo "selected"; ?> value=0>no</option>
-            <option <?php if ($data['admin'] == 1) echo "selected"; ?> value=1>yes</option>
-            
-        </select><br>
-        <input type="submit" value="Update" id="editBtn" class="btn btn-secondary mt-2" >
+        <input type="hidden" name="id" value="<?= $data['id'] ?>">
+
+        <label for="firstname">Firstname:</label>
+        <input type="text" id="firstname" name="firstname" class="form-control" value="<?= $data['firstname'] ?>">
+        <span class="error-text"><?= $error['firstname'] ?? ''?></span>
+
+        <label for="lastname" class="mt-3">Lastname:</label>
+        <input type="text" id="lastname" name="lastname" class="form-control" value="<?= $data['lastname'] ?>">
+        <span class="error-text"><?= $error['lastname'] ?? ''?></span>
+
+        <label for="email" class="mt-3">Email:</label>
+        <input type="email" id="email" name="email" class="form-control" value="<?= $data['email'] ?>">
+        <span class="error-text"><?= $error['email'] ?? ''?></span>
+
+        <label for="password" class="mt-3">Password:</label>
+        <input type="text" id="password" name="password" class="form-control" value="<?= $data['password'] ?>">
+        <span class="error-text"><?= $error['password'] ?? ''?></span>
+
+        <label for="admin" class="mt-3">Is admin:</label>
+        <select name="admin" id="admin" class="form-select">
+            <option <?php if ($data['admin'] == 0) echo "selected"; ?> value=0>No</option>
+            <option <?php if ($data['admin'] == 1) echo "selected"; ?> value=1>Yes</option>
+        </select>
+
+        <button type="submit" class="btn btn-secondary mt-4">Update</button>
     </form>
-    <h2>borrowed books</h2>
+</div>
+
+<h2>Borrowed Books</h2>
+<div class="table-responsive">
     <table class="table table-striped table-hover book-table">
-        <tr>
-        <th>book name</th>
-        <th>action</th>
-        </tr>
-
-    <?php
-        if($returnit){
-            
-                        foreach($returnit as $book){
-                            echo "<tr>
-                                <td>";
-                            echo $book['name'];
-                            echo "</td>
-                                <td>";
-                                
-                            echo "<form method='post' >
-                        <input type='hidden' name='return' value='{$book['id']}'>
-                        <button type='submit' class='btn btn-danger'>Return</button>
-                    </form>";
-
-                            echo "</td>
-                            </tr>";
-                        }
-                    } else {
-                        echo "No books borrowed.";
-                    }
-    ?>
+        <thead>
+            <tr>
+                <th>Book Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+            if($returnit){
+                foreach($returnit as $book){
+                    echo "<tr>
+                            <td>{$book['name']}</td>
+                            <td>
+                                <form method='post'>
+                                    <input type='hidden' name='return' value='{$book['id']}'>
+                                    <button type='submit' class='btn btn-danger btn-sm'>Return</button>
+                                </form>
+                            </td>
+                          </tr>";
+                }
+            } else {
+                echo "<tr><td colspan='2'>No books borrowed.</td></tr>";
+            }
+        ?>
+        </tbody>
     </table>
+</div>
 
 </body>
 </html>

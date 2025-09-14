@@ -24,3 +24,4 @@ function enableEditing() {
     document.getElementById('password').disabled = false;
     document.getElementById('editBtn').disabled = false;
 }
+

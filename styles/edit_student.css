@@ -1,0 +1,53 @@
+body {
+    background-color: #f5f7fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+}
+h2 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #343a40;
+}
+.form-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin-bottom: 50px;
+}
+.form-group input, .form-group select {
+    border-radius: 6px;
+}
+.error-text {
+    color: #dc3545;
+    font-size: 0.9rem;
+}
+.book-table {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+.book-table th {
+    background-color: #343a40;
+    color: #fff;
+}
+.book-table td, .book-table th {
+    padding: 12px 15px;
+    text-align: left;
+}
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+.btn-danger:hover {
+    background-color: #c82333;
+}
