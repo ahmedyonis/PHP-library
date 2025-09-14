@@ -2,7 +2,7 @@
 
 class MyDb{
     private $Haddress = "localhost:3306";
-    private $DbName = "newData";
+    private $DbName = "newdata";
     private $User = "root";
     private $pass = "";
 
@@ -22,9 +22,11 @@ class MyDb{
     }
 
 
-    function viewone($table,$id){
-        $data = $this->connection->query("select * from $table where id = $id");
-        return $data->fetch(PDO::FETCH_ASSOC);
+    function viewone($table, $id){
+        if (!$id) return false;
+        $stmt = $this->connection->prepare("SELECT * FROM $table WHERE id = :id");
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     function deleteone($table,$id){
@@ -37,14 +39,32 @@ class MyDb{
         return $data->fetch(PDO::FETCH_ASSOC);
     }
 
+    function borrowed_book($table, $user_id){
+        if (!$user_id) return [];
+        
+        $stmt = $this->connection->query("SELECT * FROM $table WHERE user_id = $user_id");
+        if ($stmt === false) return [];
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function available_book($table){
+        $data = $this->connection->query("select * from $table where user_id IS NULL");
+        return $data->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     function insert($table,$columns,$values){
         $data = $this->connection->query("insert into $table ($columns) values ($values)");
     }
 
-    function update($table,$id,$data){
+    function update($table,$data,$id){
         $data = $this->connection->query("update $table set $data where id = $id");
         
+    }
+
+    function books($id){
+        $data = $this->connection->query("select name from books where user_id = $id");
+        return $data->fetchAll(PDO::FETCH_ASSOC);
     }
 
 

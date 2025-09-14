@@ -6,7 +6,7 @@ if(isset($_GET['error'])){
 }
 session_start();
 if(isset($_SESSION['user'])){
-    header("Location: main.php");
+    header("Location: index.php");
     exit();
 }
 ?>
