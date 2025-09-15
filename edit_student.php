@@ -43,7 +43,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if(isset($_POST['return'])){
         $book_id = $_POST['return'];
         $db->update('books',"user_id = NULL",$book_id);
-        header("Location: admin.php");
+        header("Location: edit_student.php");
         exit();
     }
 }
